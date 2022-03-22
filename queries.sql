@@ -132,15 +132,15 @@ WHERE state = 'Texas';
 \echo ========= Problem 3.6 ====================================================
 \echo
 /*
-3.6) Write a SQL query to get the city and estimated population in 2018 in
-     number of millions (i.e. without zeroes at the end: 1 million), and that
-     uses a WHERE clause to return only the cities in Texas. Write a SQL query
-     that uses a WHERE clause to get the city, state, and estimated population
+3.6) Write a SQL query that uses a WHERE clause to get the city, state, and estimated population
      in 2018 of cities that are NOT in the following states:
      New York, California, Texas.
 */
 
 -- your query here
+SELECT city, population_estimate_2018
+FROM cities
+WHERE state NOT IN ('New York','California','Texas');
 
 \echo ========= Problem 3.7 ====================================================
 \echo
@@ -152,6 +152,9 @@ WHERE state = 'Texas';
 */
 
 -- your query here
+SELECT city, state, population_estimate_2018
+FROM cities
+WHERE city LIKE 'S%';
 
 \echo ========= Problem 3.8 ====================================================
 \echo
@@ -163,6 +166,9 @@ WHERE state = 'Texas';
 */
 
 -- your query here
+SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
+WHERE land_area_sq_mi_2016 > 400
+OR population_estimate_2018 > 2000000;
 
 \echo ========= Problem 3.9 ====================================================
 \echo
@@ -174,6 +180,12 @@ WHERE state = 'Texas';
 */
 
 -- your query here
+SELECT city, land_area_sq_mi_2016, population_estimate_2018 FROM cities
+WHERE land_area_sq_mi_2016 > 400 AND NOT
+population_estimate_2018 > 2000000 OR
+population_estimate_2018 > 2000000 AND NOT
+land_area_sq_mi_2016 > 400;
+
 
 \echo ========= Problem 3.10 ===================================================
 \echo
@@ -185,6 +197,8 @@ WHERE state = 'Texas';
 */
 
 -- your query here
+SELECT city, population_estimate_2018, population_census_2010 FROM cities
+WHERE population_estimate_2018 - population_census_2010 > 200000;
 
 ---- Phase 4: Use a JOIN operation ---------------------------------------------
 -- Retrieve rows from multiple tables joining on a foreign key.
